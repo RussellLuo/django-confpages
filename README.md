@@ -1,6 +1,6 @@
 # Django ConfPages
 
-A Django app for creating configurable pages.
+A Django app for serving configurable pages.
 
 
 ## Philosophy
