@@ -6,7 +6,8 @@ from django.shortcuts import render
 from django.http import (
     HttpResponse,
     HttpResponseForbidden,
-    HttpResponseNotAllowed
+    HttpResponseNotAllowed,
+    HttpResponseServerError
 )
 from django.template import Template, Context
 from django.utils.decorators import method_decorator
@@ -23,7 +24,7 @@ from .token import check_token
 
 
 class ConfPages(View):
-    """The core view of the database-based configurable pages."""
+    """The core view class for the configurable pages."""
 
     # The loader of pages
     page_loader = import_string(settings.PAGE_LOADER)()
@@ -95,8 +96,11 @@ class ConfPages(View):
 
         # Delegate the request to the API
         response = self.client.request(method, page.api_url, json=data)
-        return HttpResponse(
-            response.content,
-            response.headers['Content-Type'],
-            response.status_code
-        )
+        if response.status_code == 404:
+            return HttpResponseServerError('The backend API can not be found')
+        else:
+            return HttpResponse(
+                response.content,
+                response.headers['Content-Type'],
+                response.status_code
+            )

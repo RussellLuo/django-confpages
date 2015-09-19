@@ -24,5 +24,5 @@ def check_token(token):
         return True, ''
     except signing.SignatureExpired:
         return False, 'Expired one-time token'
-    except Exception:
+    except signing.BadSignature:
         return False, 'Invalid one-time token'
