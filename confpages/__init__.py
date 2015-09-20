@@ -1,4 +1,4 @@
-"""A Django app for creating configurable pages."""
+"""A Django app for serving configurable pages."""
 
 __version__ = '0.0.0'
 __author__ = 'RussellLuo'
