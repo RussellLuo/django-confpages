@@ -24,3 +24,4 @@ Some example Apps based on `Django-ConfPages`.
 
 1. [StaticPage](staticpage)
 2. [FormPage](formpage)
+3. [MultiPages](multipages)

@@ -16,7 +16,7 @@ try:
     from django.utils.module_loading import import_string
 except ImportError:
     # `import_string` is introduced in Django 1.7,
-    # use the copy utility for older versions.
+    # use the backup utility for older versions.
     from .utils import import_string
 
 from .conf import settings
