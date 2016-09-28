@@ -31,8 +31,11 @@ class MongoLoader(Loader):
 
         record = self.engine.find_one({'name': name}, fields)
         if not record:
-            raise Http404('No page named "{}" can be found in the MongoDB '
-                          'collection {}'.format(name, self.collection_name))
+            message = 'No page named "{}" can be found in the MongoDB collection {}'.format(
+                name.encode('utf-8'),
+                self.collection_name
+            )
+            raise Http404(message)
 
         page = Page(
             name,
